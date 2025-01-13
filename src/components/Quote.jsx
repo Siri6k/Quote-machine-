@@ -16,6 +16,16 @@ export default class Quote extends React.Component {
   render() {
     const { quote, author } = this.props.quote;
     const color = this.props.color();
+    const message = `"${quote}" -${author}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      `"${quote}" - ${author}`
+    )}`;
+
+    const tumblrUrl = `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,inspiration&caption=${encodeURIComponent(
+      author
+    )}&content=${encodeURIComponent(
+      quote
+    )}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`;
     return (
       <div
         id="quote-box"
@@ -32,7 +42,8 @@ export default class Quote extends React.Component {
           <div className="d-flex gap-2">
             <a
               id="tweet-quote"
-              href="https://twitter.com/intent/tweet"
+              href={twitterUrl}
+              target="_blank"
               className="btn btn-primary"
               style={{ backgroundColor: color }}
             >
@@ -41,7 +52,7 @@ export default class Quote extends React.Component {
 
             <a
               id="share-quote"
-              href="https://www.tumblr.com/share"
+              href={tumblrUrl}
               className="btn btn-primary"
               style={{ backgroundColor: color }}
             >
